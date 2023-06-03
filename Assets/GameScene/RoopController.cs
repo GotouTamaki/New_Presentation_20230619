@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class LassoController : MonoBehaviour
+public class RoopController : MonoBehaviour
 {
     [SerializeField]
-    float _angularSpeed = 360f;
-    [SerializeField]
-    float _extendLength = 3;
-    [SerializeField]
-    float _InitialLength = 0.5f;
+    GameObject _crossehair;//カーソル
+    //[SerializeField]
+    //float _angularSpeed = 360f;//振り回す速さ
+    //[SerializeField]
+    //float _extendLength = 3;//伸びた縄の長さ
+    //[SerializeField]
+    //float _InitialLength = 0.5f;//元の長さに戻す
 
     public bool LookingRight = true;
     // 最初に出現した座標
@@ -27,15 +29,18 @@ public class LassoController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //ターゲットの位置
+        //this.transform.up = _crossehair.transform.position - transform.position;
+
         if (Input.GetButton("Fire2"))
         {
-            transform.localScale = new Vector3(1, 3, 1);
-            transform.rotation *= Quaternion.AngleAxis(_angularSpeed * Time.deltaTime, Vector3.forward); 
+            //transform.localScale = new Vector3(1, 3, 1);
+            //transform.rotation *= Quaternion.AngleAxis(_angularSpeed * Time.deltaTime, Vector3.forward); 
         }
 
         if (Input.GetButtonUp("Fire2"))
         {
-            transform.localScale = new Vector3(1, _InitialLength, 1);
+            //transform.localScale = new Vector3(1, _InitialLength, 1);
 
         }
 
@@ -45,14 +50,14 @@ public class LassoController : MonoBehaviour
             //lasso.GetComponent<LassoController>().LookingRight = lookingright;
             if (Input.GetButton("Fire1"))
             {
-                transform.localScale = new Vector3(1, _extendLength, 1);;
+                //transform.localScale = new Vector3(1, _extendLength, 1);;
             }
         }
 
-        if (Input.GetButtonUp("Fire1"))
-        {
-            transform.localScale = new Vector3(1, _InitialLength, 1);
-        }
+        //if (Input.GetButtonUp("Fire1"))
+        //{
+        //    transform.localScale = new Vector3(1, _InitialLength, 1);
+        //}
 
         // 下に行きすぎたら初期位置に戻す
         if (this.transform.position.y < -10f)
