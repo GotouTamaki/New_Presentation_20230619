@@ -12,15 +12,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float m_jumpPower = 15f;
     // 入力に応じて左右を反転させるかどうかのフラグ
     [SerializeField] bool m_flipX = false;
+    //ターゲットカーソル
+    [SerializeField] GameObject _target;
+    //引っ張られる強さ
+    [SerializeField] float _springPower = 1f;
+
+    //各種初期化
     Rigidbody2D m_rb = default;
     SpriteRenderer m_sprite = default;
-    //ターゲットカーソル
-    [SerializeField]
-    GameObject _target;
-    //引っ張られる強さ
-    [SerializeField]
-    float _springPower = 1f;
-
     // m_colors に使う添字
     int m_colorIndex;
     // 水平方向の入力値
@@ -89,8 +88,6 @@ public class PlayerController : MonoBehaviour
     {
         // 横移動の力を加えるのは FixedUpdate で行う
         m_rb.AddForce(Vector2.right * m_h * m_movePower, ForceMode2D.Force);
-        //ワイヤーアクションの力を加える
-        //m_rb.AddForce(_diff * _springPower, ForceMode2D.Impulse);
     }
 
     /// <summary>

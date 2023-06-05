@@ -5,16 +5,24 @@ using static UnityEngine.GraphicsBuffer;
 
 public class TargetController : MonoBehaviour
 {
-    //プレイヤー
+    //プレイヤーを取得
     [SerializeField]
     GameObject _prayer;
 
+    LineRenderer _line;
     bool _canHook = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        //LineRenderere関連の設定
+        //コンポーネントを取得する
+        this._line = GetComponent<LineRenderer>();
+        //線の幅を決める
+        this._line.startWidth = 0.1f;
+        this._line.endWidth = 0.1f;
+        //頂点の数を決める
+        this._line.positionCount = 2;
     }
 
     // Update is called once per frame
@@ -28,6 +36,9 @@ public class TargetController : MonoBehaviour
         this.transform.position = mousePosition;
 
         _prayer.GetComponent<PlayerController>()._CanHook = _canHook;
+
+        _line.SetPosition(0, this.transform.position);
+        _line.SetPosition(1, this._prayer.transform.position);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
