@@ -13,6 +13,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] bool m_flipX = false;
     Rigidbody2D m_rb = default;
     SpriteRenderer m_sprite = default;
+    //ターゲットカーソル
+    [SerializeField]
+    GameObject _target;
+    //引っ張られる強さ
+    [SerializeField]
+    float _springPower = 1f;
 
     // m_colors に使う添字
     int m_colorIndex;
@@ -26,6 +32,8 @@ public class PlayerController : MonoBehaviour
     int Jumpcount = 0;
     // 縄を投げるの向き変更
     //bool lookingright = true;
+    //this._target.transform.positionとthis.transform.positionの差
+    Vector3 _diff;
 
     // Start is called before the first frame update
     void Start()
@@ -69,6 +77,13 @@ public class PlayerController : MonoBehaviour
     {
         // 力を加えるのは FixedUpdate で行う
         m_rb.AddForce(Vector2.right * m_h * m_movePower, ForceMode2D.Force);
+
+        if (Input.GetButton("Fire1"))
+        {
+            _diff = this._target.transform.position - this.transform.position;
+            m_rb.AddForce(_diff * _springPower, ForceMode2D.Impulse);
+        }
+
     }
 
     /// <summary>
