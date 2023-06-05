@@ -290,7 +290,8 @@ MonoBehaviour:
   m_jumpPower: 5
   m_flipX: 1
   _target: {fileID: 333753595}
-  _springPower: 0.5
+  _springPower: 3
+  _CanHook: 0
 --- !u!1 &333753595
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,6 +324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace647ee807595543b17662c5e1a2315, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _prayer: {fileID: 144685981}
 --- !u!212 &333753597
 SpriteRenderer:
   m_ObjectHideFlags: 0

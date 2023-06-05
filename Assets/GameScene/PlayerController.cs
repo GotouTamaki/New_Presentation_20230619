@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class PlayerController : MonoBehaviour
 {
@@ -28,12 +29,15 @@ public class PlayerController : MonoBehaviour
     // 最初に出現した座標
     Vector3 m_initialPosition;
     // 設置判定
-    bool isGrounded = false;
-    int Jumpcount = 0;
-    // 縄を投げるの向き変更
-    //bool lookingright = true;
+    bool _isGrounded = false;
+    int _jumpcount = 0;
     //this._target.transform.positionとthis.transform.positionの差
     Vector3 _diff;
+    //ワイヤーアクションの可否
+    public bool _CanHook = false;
+    //
+    //bool _roopA = false; 
+
 
     // Start is called before the first frame update
     void Start()
@@ -52,11 +56,19 @@ public class PlayerController : MonoBehaviour
         m_sprite = GetComponent<SpriteRenderer>();
 
         // 各種入力を受け取る
-        if (Input.GetButtonDown("Jump") && (isGrounded || Jumpcount < 2))
+        if (Input.GetButtonDown("Jump") && (_isGrounded || _jumpcount < 2))
         {
-            Jumpcount++;
+            _jumpcount++;
             Debug.Log("ここにジャンプする処理を書く。");
             m_rb.AddForce(Vector2.up * m_jumpPower, ForceMode2D.Impulse);
+        }
+
+        if (Input.GetButtonDown("Fire1") && _CanHook)
+        {
+            Debug.Log("ワイヤーアクション！");
+            _diff = this._target.transform.position - this.transform.position;
+            //ワイヤーアクションの力を加える
+            m_rb.AddForce(_diff * _springPower, ForceMode2D.Impulse);
         }
 
         // 下に行きすぎたら初期位置に戻す
@@ -75,15 +87,10 @@ public class PlayerController : MonoBehaviour
 
         private void FixedUpdate()
     {
-        // 力を加えるのは FixedUpdate で行う
+        // 横移動の力を加えるのは FixedUpdate で行う
         m_rb.AddForce(Vector2.right * m_h * m_movePower, ForceMode2D.Force);
-
-        if (Input.GetButton("Fire1"))
-        {
-            _diff = this._target.transform.position - this.transform.position;
-            m_rb.AddForce(_diff * _springPower, ForceMode2D.Impulse);
-        }
-
+        //ワイヤーアクションの力を加える
+        //m_rb.AddForce(_diff * _springPower, ForceMode2D.Impulse);
     }
 
     /// <summary>
@@ -114,13 +121,19 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("接地した");
-        isGrounded = true;
-        Jumpcount = 0; 
+        if (collision.gameObject.tag == "Ground")
+        {
+            Debug.Log("接地した");
+            _isGrounded = true;
+            _jumpcount = 0;
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("ジャンプした");
-        isGrounded = false;
+        if (collision.gameObject.tag == "Ground")
+        {
+            Debug.Log("ジャンプした");
+            _isGrounded = false;
+        }
     }
 }
