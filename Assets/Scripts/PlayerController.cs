@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
             m_rb.AddForce(Vector2.up * m_jumpPower, ForceMode2D.Impulse);
         }
 
-        if (Input.GetButtonDown("Fire1") && _CanHook)
+        if (Input.GetButton("Fire1") && _CanHook)
         {
             Debug.Log("ワイヤーアクション！");
             _diff = this._target.transform.position - this.transform.position;
