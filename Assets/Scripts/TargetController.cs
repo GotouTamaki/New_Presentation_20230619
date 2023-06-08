@@ -28,17 +28,31 @@ public class TargetController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        //フックを掛けられるかどうか
+        _prayer.GetComponent<PlayerController>()._CanHook = _canHook;
+
+        if (Input.GetButton("Fire1") && _canHook)
+        {
+            this.transform.position = this.transform.position;
+        }
+        else
+        {
+            TargetMove();
+        }
+
+        _line.SetPosition(0, this.transform.position);
+        _line.SetPosition(1, this._prayer.transform.position);
+    }
+
+    private void TargetMove()
+    {
         // Camera.main でメインカメラ（MainCamera タグの付いた Camera）を取得する
         // Camera.ScreenToWorldPoint 関数で、スクリーン座標をワールド座標に変換する
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         // ターゲットが見えなくなってしまうため、Z 座標を調整している
         mousePosition.z = -5;
         this.transform.position = mousePosition;
-
-        _prayer.GetComponent<PlayerController>()._CanHook = _canHook;
-
-        _line.SetPosition(0, this.transform.position);
-        _line.SetPosition(1, this._prayer.transform.position);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

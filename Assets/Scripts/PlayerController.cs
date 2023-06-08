@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject _target;
     //引っ張られる強さ
     [SerializeField] float _springPower = 1f;
-
+    
     //各種初期化
     Rigidbody2D m_rb = default;
     SpriteRenderer m_sprite = default;
@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     bool _isGrounded = false;
     int _jumpcount = 0;
     //this._target.transform.positionとthis.transform.positionの差
-    Vector3 _diff;
+    Vector2 _diff;
     //ワイヤーアクションの可否
     public bool _CanHook = false;
     //
@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
     {
         // 入力を受け取る
         m_h = Input.GetAxisRaw("Horizontal");
+        //m_h = 0;
         m_sprite = GetComponent<SpriteRenderer>();
 
         // 各種入力を受け取る
@@ -64,10 +65,12 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButton("Fire1") && _CanHook)
         {
+            //横移動の入力
+            //m_h = Input.GetAxisRaw("Horizontal");
             Debug.Log("ワイヤーアクション！");
             _diff = this._target.transform.position - this.transform.position;
             //ワイヤーアクションの力を加える
-            m_rb.AddForce(_diff * _springPower, ForceMode2D.Impulse);
+            m_rb.AddForce(_diff * _springPower, ForceMode2D.Force);            
         }
 
         // 下に行きすぎたら初期位置に戻す
@@ -88,6 +91,9 @@ public class PlayerController : MonoBehaviour
     {
         // 横移動の力を加えるのは FixedUpdate で行う
         m_rb.AddForce(Vector2.right * m_h * m_movePower, ForceMode2D.Force);
+
+        //ワイヤーアクションの力を加える
+        //m_rb.AddForce(_diff * _springPower, ForceMode2D.Impulse);
     }
 
     /// <summary>
@@ -118,19 +124,19 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
-        {
+        //if (collision.gameObject.tag == "Ground")
+        //{
             Debug.Log("接地した");
             _isGrounded = true;
             _jumpcount = 0;
-        }
+        //}
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
-        {
+        //if (collision.gameObject.tag == "Ground")
+        //{
             Debug.Log("ジャンプした");
             _isGrounded = false;
-        }
+        //}
     }
 }
