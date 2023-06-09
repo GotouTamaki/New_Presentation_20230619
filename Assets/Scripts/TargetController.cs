@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
+//using static UnityEngine.GraphicsBuffer;
 
 public class TargetController : MonoBehaviour
 {
     //プレイヤーを取得
     [SerializeField]
-    GameObject _prayer;
+    GameObject _player;
 
     LineRenderer _line;
     bool _canHook = false;
+    GameObject _target;
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +31,7 @@ public class TargetController : MonoBehaviour
     {
 
         //フックを掛けられるかどうか
-        _prayer.GetComponent<PlayerController>()._CanHook = _canHook;
+        _player.GetComponent<PlayerController>()._CanHook = _canHook;
 
         if (Input.GetButton("Fire1") && _canHook)
         {
@@ -42,7 +43,7 @@ public class TargetController : MonoBehaviour
         }
 
         _line.SetPosition(0, this.transform.position);
-        _line.SetPosition(1, this._prayer.transform.position);
+        _line.SetPosition(1, this._player.transform.position);
     }
 
     private void TargetMove()
@@ -57,23 +58,52 @@ public class TargetController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Anchor")
+        if (!_target && (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Anchor"))
         {
-            //Debug.Log("引っかかる");
+            _target = collision.gameObject;
+            //Debug.Log($"Target: {_target.name}");
             SpriteRenderer Cr = GetComponent<SpriteRenderer>();
             Cr.color = Color.green;
             _canHook = true;
         }
+
+        //if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Anchor")
+        //{
+        //    Debug.Log("引っかかる");
+        //    SpriteRenderer Cr = GetComponent<SpriteRenderer>();
+        //    Cr.color = Color.green;
+        //    _canHook = true;
+        //}
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Anchor")
+        if (_target)
         {
-            //Debug.Log("取れた");
+            _target = null;
+            //Debug.Log($"Target: null");
             SpriteRenderer Cr = GetComponent<SpriteRenderer>();
             Cr.color = Color.white;
             _canHook = false;
-        } 
+        }
+        //if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Anchor")
+        //{
+        //    Debug.Log("外れた");
+        //    SpriteRenderer Cr = GetComponent<SpriteRenderer>();
+        //    Cr.color = Color.white;
+        //    _canHook = false;
+        //} 
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (!_target && (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Anchor"))
+        {
+            _target = collision.gameObject;
+            //Debug.Log($"Target: {_target.name}");
+            SpriteRenderer Cr = GetComponent<SpriteRenderer>();
+            Cr.color = Color.green;
+            _canHook = true;
+        }
     }
 }

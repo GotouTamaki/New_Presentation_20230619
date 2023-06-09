@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace647ee807595543b17662c5e1a2315, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prayer: {fileID: 0}
+  _player: {fileID: 5456614824842928122, guid: 50034c888e6a686409a79c8f3b5409b9, type: 3}
 --- !u!50 &5729102314226473296
 Rigidbody2D:
   serializedVersion: 4
@@ -158,7 +158,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: d7697324138a7f9408492c8f05f19399, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

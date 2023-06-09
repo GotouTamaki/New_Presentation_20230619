@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
+//using static UnityEngine.GraphicsBuffer;
 
 public class PlayerController : MonoBehaviour
 {
@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D m_rb = default;
     SpriteRenderer m_sprite = default;
     // m_colors に使う添字
-    int m_colorIndex;
+    //int m_colorIndex;
     // 水平方向の入力値
     float m_h;
     float m_scaleX;
@@ -33,10 +33,7 @@ public class PlayerController : MonoBehaviour
     //this._target.transform.positionとthis.transform.positionの差
     Vector2 _diff;
     //ワイヤーアクションの可否
-    public bool _CanHook = false;
-    //
-    //bool _roopA = false; 
-
+    public bool _CanHook = false; 
 
     // Start is called before the first frame update
     void Start()
@@ -65,19 +62,17 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButton("Fire1") && _CanHook)
         {
-            //横移動の入力
-            //m_h = Input.GetAxisRaw("Horizontal");
-            Debug.Log("ワイヤーアクション！");
+            //Debug.Log("ワイヤーアクション！");
             _diff = this._target.transform.position - this.transform.position;
             //ワイヤーアクションの力を加える
             m_rb.AddForce(_diff * _springPower, ForceMode2D.Force);            
         }
 
         // 下に行きすぎたら初期位置に戻す
-        if (this.transform.position.y < -10f)
-        {
-            this.transform.position = m_initialPosition;
-        }
+        //if (this.transform.position.y < -10f)
+        //{
+        //    this.transform.position = m_initialPosition;
+        //}
 
         // 設定に応じて左右を反転させる
         if (m_flipX)
@@ -93,7 +88,7 @@ public class PlayerController : MonoBehaviour
         m_rb.AddForce(Vector2.right * m_h * m_movePower, ForceMode2D.Force);
 
         //ワイヤーアクションの力を加える
-        //m_rb.AddForce(_diff * _springPower, ForceMode2D.Impulse);
+        //m_rb.AddForce(_diff * _springPower, ForceMode2D.Force);
     }
 
     /// <summary>
@@ -124,19 +119,19 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //if (collision.gameObject.tag == "Ground")
-        //{
+        if (collision.gameObject.tag != "Target")
+        {
             Debug.Log("接地した");
             _isGrounded = true;
             _jumpcount = 0;
-        //}
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        //if (collision.gameObject.tag == "Ground")
-        //{
+        if (collision.gameObject.tag != "Target")
+        {
             Debug.Log("ジャンプした");
             _isGrounded = false;
-        //}
+        }
     }
 }
