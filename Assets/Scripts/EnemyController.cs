@@ -35,6 +35,11 @@ public class EnemyController : MonoBehaviour
         {
             Patrol();
         }
+        else if (_moveMode == MoveMode.CatchMove)
+        {
+            CatchMove();
+        }
+
     }
 
     enum MoveMode
@@ -42,11 +47,12 @@ public class EnemyController : MonoBehaviour
         MoveStope,
         MovePoint0,
         Patrol,
+        CatchMove,
     }
 
     void MoveStope()
     {
-        Debug.Log("“G’âŽ~");
+        //Debug.Log("“G’âŽ~");
     }
 
     void MovePoint0() 
@@ -62,6 +68,11 @@ public class EnemyController : MonoBehaviour
     }
 
     void Patrol()
+    {
+
+    }
+
+    void CatchMove()
     {
 
     }

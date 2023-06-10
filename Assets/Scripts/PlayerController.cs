@@ -65,7 +65,12 @@ public class PlayerController : MonoBehaviour
             //Debug.Log("ワイヤーアクション！");
             _diff = this._target.transform.position - this.transform.position;
             //ワイヤーアクションの力を加える
-            m_rb.AddForce(_diff * _springPower, ForceMode2D.Force);            
+            //m_rb.AddForce(_diff * _springPower, ForceMode2D.Force);            
+        }
+
+        if (Input.GetButtonUp("Fire1"))
+        {
+            _diff = new Vector2(0,0);
         }
 
         // 下に行きすぎたら初期位置に戻す
@@ -86,9 +91,8 @@ public class PlayerController : MonoBehaviour
     {
         // 横移動の力を加えるのは FixedUpdate で行う
         m_rb.AddForce(Vector2.right * m_h * m_movePower, ForceMode2D.Force);
-
         //ワイヤーアクションの力を加える
-        //m_rb.AddForce(_diff * _springPower, ForceMode2D.Force);
+        m_rb.AddForce(_diff * _springPower, ForceMode2D.Force);
     }
 
     /// <summary>
