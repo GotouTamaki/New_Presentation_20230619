@@ -9,20 +9,37 @@ public class EnemyController : MonoBehaviour
     [SerializeField] float _moveSpeed = 1f;
     [Tooltip("ターゲットに到達したと判断する距離（単位:メートル）")]
     [SerializeField] float _stoppingDistance = 0.05f;
+    [SerializeField]
+    protected float _vertSpeed = 1f;
+    [SerializeField]
+    protected float _horiSpeed = 1f;
+    //[SerializeField]
+    //float _dir = 1f;
 
     Vector3 m_initialPosition;
     Rigidbody2D m_rb = default;
+    float _x = 0;
+    float _time = 0;
+    float _originalX = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         m_initialPosition = this.transform.position;
         m_rb = GetComponent<Rigidbody2D>();
+
+        _originalX = transform.position.x;
     }
 
     // Update is called once per frame
     void Update()
     {
+        _time += Time.deltaTime;
+    }
+
+    private void FixedUpdate()
+    {
+
         if (_moveMode == MoveMode.MoveStope)
         {
             MoveStope();
@@ -35,11 +52,14 @@ public class EnemyController : MonoBehaviour
         {
             Patrol();
         }
+        else if (_moveMode == MoveMode.SinCurveMove)
+        {
+            SinCurveMove();
+        }
         else if (_moveMode == MoveMode.CatchMove)
         {
             CatchMove();
         }
-
     }
 
     enum MoveMode
@@ -47,6 +67,7 @@ public class EnemyController : MonoBehaviour
         MoveStope,
         MovePoint0,
         Patrol,
+        SinCurveMove,
         CatchMove,
     }
 
@@ -70,6 +91,14 @@ public class EnemyController : MonoBehaviour
     void Patrol()
     {
 
+    }
+
+    void SinCurveMove()
+    {
+        _x = Mathf.Sin(_time * _horiSpeed) + _originalX;
+        //Debug.Log(_x);
+        transform.position = new Vector2(_x, transform.position.y);
+        //m_rb.AddForce(Vector2.right * _x, ForceMode2D.Force);
     }
 
     void CatchMove()

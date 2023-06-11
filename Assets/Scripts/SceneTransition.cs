@@ -27,8 +27,14 @@ public class SceneTransition : MonoBehaviour
         SceneManager.LoadScene(stage);
     }
 
-    public void Reset()
+    public void ResetScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void TitleScene()
+    {
+        //Debug.Log("TitleScene");
+        SceneManager.LoadScene("TitleScene");
     }
 }
