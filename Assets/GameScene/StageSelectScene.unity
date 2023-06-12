@@ -502,7 +502,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Tutorisal
+  m_text: 'Tutorial
 
 '
   m_isRightToLeft: 0

@@ -14,25 +14,19 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     protected float _horiSpeed = 1f;
     [SerializeField]
-    float _Posidis = 1f;
-    [SerializeField]
-    float _Negadis = -1f;
+    float _originalX = 0;
 
     Vector3 m_initialPosition;
     Rigidbody2D m_rb = default;
     float _x = 0;
     float _time = 0;
-    float _originalX = 0;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         m_initialPosition = this.transform.position;
         m_rb = GetComponent<Rigidbody2D>();
-
-        _originalX = transform.position.x;
-        _Posidis += transform.position.x;
-        _Negadis += transform.position.x;
     }
 
     // Update is called once per frame
@@ -101,10 +95,11 @@ public class EnemyController : MonoBehaviour
     {
         //if (_Posidis >= _x)
         //{
-            _x = Mathf.Sin(_time * _horiSpeed) + _originalX;
+            _x = Mathf.Sin(_time * _horiSpeed) * _originalX;
         //Debug.Log(_x);
-            transform.position = new Vector2(_x, transform.position.y);
-            //m_rb.AddForce(Vector2.right * _x, ForceMode2D.Force);
+            //transform.position = new Vector2(_x, transform.position.y);
+        m_rb.velocity = new Vector2(_x, m_rb.velocity.y);
+        //m_rb.AddForce(Vector2.right * _x, ForceMode2D.Force);
         //}
         //else if (_Negadis <= _x)
         //{
