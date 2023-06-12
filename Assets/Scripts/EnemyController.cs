@@ -13,8 +13,10 @@ public class EnemyController : MonoBehaviour
     protected float _vertSpeed = 1f;
     [SerializeField]
     protected float _horiSpeed = 1f;
-    //[SerializeField]
-    //float _dir = 1f;
+    [SerializeField]
+    float _Posidis = 1f;
+    [SerializeField]
+    float _Negadis = -1f;
 
     Vector3 m_initialPosition;
     Rigidbody2D m_rb = default;
@@ -29,6 +31,8 @@ public class EnemyController : MonoBehaviour
         m_rb = GetComponent<Rigidbody2D>();
 
         _originalX = transform.position.x;
+        _Posidis += transform.position.x;
+        _Negadis += transform.position.x;
     }
 
     // Update is called once per frame
@@ -95,10 +99,18 @@ public class EnemyController : MonoBehaviour
 
     void SinCurveMove()
     {
-        _x = Mathf.Sin(_time * _horiSpeed) + _originalX;
+        //if (_Posidis >= _x)
+        //{
+            _x = Mathf.Sin(_time * _horiSpeed) + _originalX;
         //Debug.Log(_x);
-        transform.position = new Vector2(_x, transform.position.y);
-        //m_rb.AddForce(Vector2.right * _x, ForceMode2D.Force);
+            transform.position = new Vector2(_x, transform.position.y);
+            //m_rb.AddForce(Vector2.right * _x, ForceMode2D.Force);
+        //}
+        //else if (_Negadis <= _x)
+        //{
+        //    _x = Mathf.Sin(_time * _horiSpeed) + _originalX;
+        //    m_rb.AddForce(Vector2.left * _x, ForceMode2D.Force);
+        //}
     }
 
     void CatchMove()
