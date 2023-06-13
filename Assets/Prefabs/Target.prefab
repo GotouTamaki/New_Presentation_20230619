@@ -100,7 +100,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace647ee807595543b17662c5e1a2315, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 5456614824842928122, guid: 50034c888e6a686409a79c8f3b5409b9, type: 3}
+  _player: {fileID: 0}
+  _defaultColor: {r: 1, g: 0, b: 0, a: 0.43137255}
+  _catchColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!50 &5729102314226473296
 Rigidbody2D:
   serializedVersion: 4
@@ -202,7 +204,7 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0, b: 0, a: 1}
+      key0: {r: 1, g: 1, b: 1, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}

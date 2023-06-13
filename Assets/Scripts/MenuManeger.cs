@@ -26,12 +26,12 @@ public class MenuManeger : MonoBehaviour
             if (!_statusWindow.activeSelf)
             {
                 Time.timeScale = 1;
-                Debug.Log("memu crose");
+                //Debug.Log("memu crose");
             }
             else
             {
                 Time.timeScale = 0;
-                Debug.Log("memu ");
+                //Debug.Log("memu ");
             }
         }
     }

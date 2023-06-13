@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 //using static UnityEngine.GraphicsBuffer;
 
 public class TargetController : MonoBehaviour
@@ -8,6 +9,11 @@ public class TargetController : MonoBehaviour
     //プレイヤーを取得
     [SerializeField]
     GameObject _player;
+    [SerializeField]
+    Color _defaultColor;
+    [SerializeField]
+    Color _catchColor;
+
 
     LineRenderer _line;
     bool _canHook = false;
@@ -24,11 +30,15 @@ public class TargetController : MonoBehaviour
         this._line.endWidth = 0.1f;
         //頂点の数を決める
         this._line.positionCount = 2;
+        //マテリアルの設定
+        _line.material = new Material(Shader.Find("Sprites/Default"));
     }
 
     // Update is called once per frame
     void Update()
     {
+        _line.SetPosition(0, this.transform.position);
+        _line.SetPosition(1, this._player.transform.position);
 
         //フックを掛けられるかどうか
         _player.GetComponent<PlayerController>()._CanHook = _canHook;
@@ -36,14 +46,16 @@ public class TargetController : MonoBehaviour
         if (Input.GetButton("Fire1") && _canHook)
         {
             this.transform.position = this.transform.position;
+            //色を指定する
+            _line.startColor = _catchColor;
+            _line.endColor = _catchColor;
         }
         else
         {
             TargetMove();
+            _line.startColor = _defaultColor;
+            _line.endColor = _defaultColor;
         }
-
-        _line.SetPosition(0, this.transform.position);
-        _line.SetPosition(1, this._player.transform.position);
     }
 
     private void TargetMove()

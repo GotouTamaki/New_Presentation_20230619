@@ -1,63 +1,67 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 //using static UnityEngine.GraphicsBuffer;
 
 public class PlayerController : MonoBehaviour
 {
 
     // 左右移動する力
-    [SerializeField] float m_movePower = 5f;
+    [SerializeField] float _movePower = 5f;
     // ジャンプする力
-    [SerializeField] float m_jumpPower = 15f;
+    [SerializeField] float _jumpPower = 15f;
     // 入力に応じて左右を反転させるかどうかのフラグ
-    [SerializeField] bool m_flipX = false;
+    [SerializeField] bool _flipX = false;
     //ターゲットカーソル
     [SerializeField] GameObject _target;
     //引っ張られる強さ
     [SerializeField] float _springPower = 1f;
     
     //各種初期化
-    Rigidbody2D m_rb = default;
-    SpriteRenderer m_sprite = default;
+    Rigidbody2D _rb = default;
+    SpriteRenderer _sprite = default;
     // m_colors に使う添字
     //int m_colorIndex;
     // 水平方向の入力値
-    float m_h;
-    float m_scaleX;
+    float _h;
+    float _scaleX;
     // 最初に出現した座標
-    Vector3 m_initialPosition;
+    Vector3 _initialPosition;
     // 設置判定
     bool _isGrounded = false;
     int _jumpcount = 0;
     //this._target.transform.positionとthis.transform.positionの差
     Vector2 _diff;
     //ワイヤーアクションの可否
-    public bool _CanHook = false; 
+    public bool _CanHook = false;
+    //
+    string _stage = default;
 
     // Start is called before the first frame update
     void Start()
     {
-        m_rb = GetComponent<Rigidbody2D>();
-        m_sprite = GetComponent<SpriteRenderer>();
+        _rb = GetComponent<Rigidbody2D>();
+        _sprite = GetComponent<SpriteRenderer>();
         // 初期位置を覚えておく
-        m_initialPosition = this.transform.position;
+        _initialPosition = this.transform.position;
+        _stage = SceneManager.GetActiveScene().name;
     }
 
     // Update is called once per frame
     void Update()
     {
         // 入力を受け取る
-        m_h = Input.GetAxisRaw("Horizontal");
+        _h = Input.GetAxisRaw("Horizontal");
         //m_h = 0;
-        m_sprite = GetComponent<SpriteRenderer>();
+        _sprite = GetComponent<SpriteRenderer>();
 
         // 各種入力を受け取る
         if (Input.GetButtonDown("Jump") && (_isGrounded || _jumpcount < 2))
         {
             _jumpcount++;
-            Debug.Log("ここにジャンプする処理を書く。");
-            m_rb.AddForce(Vector2.up * m_jumpPower, ForceMode2D.Impulse);
+            //Debug.Log("ここにジャンプする処理を書く。");
+            _rb.AddForce(Vector2.up * _jumpPower, ForceMode2D.Impulse);
         }
 
         if (Input.GetButton("Fire1") && _CanHook)
@@ -80,9 +84,9 @@ public class PlayerController : MonoBehaviour
         //}
 
         // 設定に応じて左右を反転させる
-        if (m_flipX)
+        if (_flipX)
         {
-            FlipX(m_h);
+            FlipX(_h);
 
         }
     }
@@ -90,9 +94,9 @@ public class PlayerController : MonoBehaviour
         private void FixedUpdate()
     {
         // 横移動の力を加えるのは FixedUpdate で行う
-        m_rb.AddForce(Vector2.right * m_h * m_movePower, ForceMode2D.Force);
+        _rb.AddForce(Vector2.right * _h * _movePower, ForceMode2D.Force);
         //ワイヤーアクションの力を加える
-        m_rb.AddForce(_diff * _springPower, ForceMode2D.Force);
+        _rb.AddForce(_diff * _springPower, ForceMode2D.Force);
     }
 
     /// <summary>
@@ -106,7 +110,7 @@ public class PlayerController : MonoBehaviour
          * 左右を反転させるには、Transform:Scale:X に -1 を掛ける。
          * Sprite Renderer の Flip:X を操作しても反転する。
          * */
-        m_scaleX = this.transform.localScale.x;
+        _scaleX = this.transform.localScale.x;
 
         if (horizontal > 0)
         {
@@ -125,7 +129,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag != "Target")
         {
-            Debug.Log("接地した");
+            //Debug.Log("接地した");
             _isGrounded = true;
             _jumpcount = 0;
         }
@@ -134,7 +138,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag != "Target")
         {
-            Debug.Log("ジャンプした");
+            //Debug.Log("ジャンプした");
             _isGrounded = false;
         }
     }

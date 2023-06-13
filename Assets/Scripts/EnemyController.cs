@@ -9,15 +9,15 @@ public class EnemyController : MonoBehaviour
     [SerializeField] float _moveSpeed = 1f;
     [Tooltip("ターゲットに到達したと判断する距離（単位:メートル）")]
     [SerializeField] float _stoppingDistance = 0.05f;
-    [SerializeField]
-    protected float _vertSpeed = 1f;
-    [SerializeField]
-    protected float _horiSpeed = 1f;
+    //[SerializeField]
+    //protected float _vertSpeed = 1f;
+    //[SerializeField]
+    //protected float _horiSpeed = 1f;
     [SerializeField]
     float _originalX = 0;
 
-    Vector3 m_initialPosition;
-    Rigidbody2D m_rb = default;
+    Vector3 _initialPosition;
+    Rigidbody2D _rb = default;
     float _x = 0;
     float _time = 0;
     
@@ -25,38 +25,48 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_initialPosition = this.transform.position;
-        m_rb = GetComponent<Rigidbody2D>();
+        _initialPosition = this.transform.position;
+        _rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        _time += Time.deltaTime;
+        if (InsideCamera() == true)
+        {
+            _time += Time.deltaTime;
+        }
+        else if (InsideCamera() == false)
+        {
+            this.transform.position = this.transform.position;
+            //Debug.Log("止まる");
+        }
     }
 
     private void FixedUpdate()
     {
-
-        if (_moveMode == MoveMode.MoveStope)
+        if (InsideCamera())
         {
-            MoveStope();
-        }
-        else if (_moveMode == MoveMode.MovePoint0)
-        {
-            MovePoint0();
-        }
-        else if (_moveMode == MoveMode.Patrol)
-        {
-            Patrol();
-        }
-        else if (_moveMode == MoveMode.SinCurveMove)
-        {
-            SinCurveMove();
-        }
-        else if (_moveMode == MoveMode.CatchMove)
-        {
-            CatchMove();
+            if (_moveMode == MoveMode.MoveStope)
+            {
+                MoveStope();
+            }
+            else if (_moveMode == MoveMode.MovePoint0)
+            {
+                MovePoint0();
+            }
+            else if (_moveMode == MoveMode.Patrol)
+            {
+                Patrol();
+            }
+            else if (_moveMode == MoveMode.SinCurveMove)
+            {
+                SinCurveMove();
+            }
+            else if (_moveMode == MoveMode.CatchMove)
+            {
+                CatchMove();
+            }
         }
     }
 
@@ -77,12 +87,12 @@ public class EnemyController : MonoBehaviour
     void MovePoint0() 
     {
         // 自分自身とターゲットの距離を求める
-        float distance = Vector2.Distance(this.transform.position, m_initialPosition);
+        float distance = Vector2.Distance(this.transform.position, _initialPosition);
 
         if (distance > _stoppingDistance)  // ターゲットに到達するまで処理する
         {
-            Vector3 dir = (m_initialPosition - this.transform.position).normalized * _moveSpeed; // 移動方向のベクトルを求める
-            m_rb.AddForce(dir * _moveSpeed, ForceMode2D.Force);
+            Vector3 dir = (_initialPosition - this.transform.position).normalized * _moveSpeed; // 移動方向のベクトルを求める
+            _rb.AddForce(dir * _moveSpeed, ForceMode2D.Force);
         }
     }
 
@@ -93,23 +103,26 @@ public class EnemyController : MonoBehaviour
 
     void SinCurveMove()
     {
-        //if (_Posidis >= _x)
-        //{
-            _x = Mathf.Sin(_time * _horiSpeed) * _originalX;
+        _x = Mathf.Sin(_time * _moveSpeed) * _originalX;
         //Debug.Log(_x);
-            //transform.position = new Vector2(_x, transform.position.y);
-        m_rb.velocity = new Vector2(_x, m_rb.velocity.y);
-        //m_rb.AddForce(Vector2.right * _x, ForceMode2D.Force);
-        //}
-        //else if (_Negadis <= _x)
-        //{
-        //    _x = Mathf.Sin(_time * _horiSpeed) + _originalX;
-        //    m_rb.AddForce(Vector2.left * _x, ForceMode2D.Force);
-        //}
+        _rb.velocity = new Vector2(_x, _rb.velocity.y);
     }
 
     void CatchMove()
     {
+
+    }
+
+    public bool InsideCamera()
+    {
+        float x = Camera.main.ViewportToWorldPoint(Vector2.one).x;
+        float y = Camera.main.ViewportToWorldPoint(Vector2.one).y;
+        if (x > transform.position.x && transform.position.x > Camera.main.ViewportToWorldPoint(Vector2.zero).x &&
+            y > transform.position.y && transform.position.y > Camera.main.ViewportToWorldPoint(Vector2.zero).y)
+        {
+            return true;
+        }
+        return false;
 
     }
 }

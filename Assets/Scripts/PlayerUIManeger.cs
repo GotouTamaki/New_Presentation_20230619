@@ -9,16 +9,22 @@ public class PlayerUIManeger : MonoBehaviour
     [SerializeField]
     Text _timer = default;
 
+    float _time = 0;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        _time = 0.0f;
+        _timer.text = "0.00"; 
     }
 
     // Update is called once per frame
     void Update()
     {
         // TimeText ‚ÉƒvƒŒƒCŽžŠÔ‚ð•\Ž¦‚·‚é
-        _timer.text = Time.time.ToString("F2");
+        _time += Time.deltaTime;
+        _timer.text = _time.ToString("F2");
+
+        //_timer.text = Time.time.ToString("F2");
     }
 }

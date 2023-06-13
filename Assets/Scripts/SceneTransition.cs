@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransition : MonoBehaviour
 {
-    [SerializeField] Image[] _images = new Image[2];
-    [SerializeField] Color _selectColor = Color.white;
+    //[SerializeField] Image[] _images = new Image[2];
+    //[SerializeField] Color _selectColor = Color.white;
 
 
     // Start is called before the first frame update
