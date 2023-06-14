@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fe4ca30afabc6a40b52e823e694acd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movePower: 5
+  _movePower: 7
   _jumpPower: 7
   _flipX: 0
   _target: {fileID: 0}

@@ -14,7 +14,7 @@ public class EnemyController : MonoBehaviour
     //[SerializeField]
     //protected float _horiSpeed = 1f;
     [SerializeField]
-    float _originalX = 0;
+    float _originalX = 1f;
 
     Vector3 _initialPosition;
     Rigidbody2D _rb = default;

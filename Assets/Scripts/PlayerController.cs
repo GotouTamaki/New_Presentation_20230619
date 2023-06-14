@@ -70,11 +70,10 @@ public class PlayerController : MonoBehaviour
             _diff = this._target.transform.position - this.transform.position;
             //ワイヤーアクションの力を加える
             //m_rb.AddForce(_diff * _springPower, ForceMode2D.Force);            
-        }
-
-        if (Input.GetButtonUp("Fire1"))
+        }       
+        else
         {
-            _diff = new Vector2(0,0);
+            _diff = Vector2.zero;
         }
 
         // 下に行きすぎたら初期位置に戻す

@@ -24,7 +24,5 @@ public class PlayerUIManeger : MonoBehaviour
         // TimeText ‚ÉƒvƒŒƒCŽžŠÔ‚ð•\Ž¦‚·‚é
         _time += Time.deltaTime;
         _timer.text = _time.ToString("F2");
-
-        //_timer.text = Time.time.ToString("F2");
     }
 }

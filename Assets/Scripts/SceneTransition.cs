@@ -43,8 +43,18 @@ public class SceneTransition : MonoBehaviour
         SceneManager.LoadScene("StageSelectScene");
     }
 
+    public void OperationExplanation()
+    {
+        SceneManager.LoadScene("OperationExplanation");
+    }
+
     public void StageTutorial()
     {
         SceneManager.LoadScene("Stage_Tutorial");
+    }
+
+    public void Stage_1()
+    {
+        SceneManager.LoadScene("Stage_1");
     }
 }
