@@ -70,7 +70,7 @@ public class TargetController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!_target && (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Anchor"))
+        if (!_target && (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Anchor" || collision.gameObject.tag == "Item"))
         {
             _target = collision.gameObject;
             //Debug.Log($"Target: {_target.name}");
@@ -78,14 +78,6 @@ public class TargetController : MonoBehaviour
             Cr.color = Color.green;
             _canHook = true;
         }
-
-        //if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Anchor")
-        //{
-        //    Debug.Log("ˆø‚Á‚©‚©‚é");
-        //    SpriteRenderer Cr = GetComponent<SpriteRenderer>();
-        //    Cr.color = Color.green;
-        //    _canHook = true;
-        //}
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -97,19 +89,12 @@ public class TargetController : MonoBehaviour
             SpriteRenderer Cr = GetComponent<SpriteRenderer>();
             Cr.color = Color.white;
             _canHook = false;
-        }
-        //if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Anchor")
-        //{
-        //    Debug.Log("ŠO‚ê‚½");
-        //    SpriteRenderer Cr = GetComponent<SpriteRenderer>();
-        //    Cr.color = Color.white;
-        //    _canHook = false;
-        //} 
+        } 
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (!_target && (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Anchor"))
+        if (!_target && (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Anchor" || collision.gameObject.tag == "Item"))
         {
             _target = collision.gameObject;
             //Debug.Log($"Target: {_target.name}");
