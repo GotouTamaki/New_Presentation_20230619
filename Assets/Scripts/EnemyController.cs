@@ -38,7 +38,7 @@ public class EnemyController : MonoBehaviour
         }
         else if (InsideCamera() == false)
         {
-            this.transform.position = this.transform.position;
+            _rb.velocity = new Vector2(0, 0);
             //Debug.Log("Ž~‚Ü‚é");
         }
     }

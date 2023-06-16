@@ -4,21 +4,15 @@ using UnityEngine;
 
 public class MessegeWindow : MonoBehaviour
 {
-    [SerializeField]
-    RectTransform canvasRect;
-
-    [SerializeField]
-    GameObject _messagwWindow;
-
-    void OnEnable()
+    // Start is called before the first frame update
+    void Start()
     {
-        //_messagwWindow.targetTran = transform;
+        
     }
 
-    void OnDisable()
+    // Update is called once per frame
+    void Update()
     {
-        if (_messagwWindow == null) return;
-
-        Destroy(_messagwWindow.gameObject);
+        
     }
 }
