@@ -812,6 +812,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2018116251}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: set_clip
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 05a5376f779578941b42360eb5c5df21, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1233328512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1081,6 +1093,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2018116251}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: set_clip
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 05a5376f779578941b42360eb5c5df21, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1877964157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1283,6 +1307,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2018116251}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: set_clip
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 05a5376f779578941b42360eb5c5df21, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2000715964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1328,6 +1364,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2250764604503368394, guid: a94171afaabcbfd4c9097b06882ab904, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7202356619970500517, guid: a94171afaabcbfd4c9097b06882ab904, type: 3}
       propertyPath: m_Name
       value: GameManeger
@@ -1391,3 +1431,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a215a13d08cad4438e7de8e3ff65595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &2018116251 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2250764604503368394, guid: a94171afaabcbfd4c9097b06882ab904, type: 3}
+  m_PrefabInstance: {fileID: 2018116248}
+  m_PrefabAsset: {fileID: 0}

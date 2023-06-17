@@ -18,6 +18,7 @@ public class TargetController : MonoBehaviour
     LineRenderer _line;
     bool _canHook = false;
     GameObject _target;
+    //AudioSource _audio = default;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,7 @@ public class TargetController : MonoBehaviour
         this._line.positionCount = 2;
         //É}ÉeÉäÉAÉãÇÃê›íË
         _line.material = new Material(Shader.Find("Sprites/Default"));
+        //_audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -77,6 +79,7 @@ public class TargetController : MonoBehaviour
             SpriteRenderer Cr = GetComponent<SpriteRenderer>();
             Cr.color = Color.green;
             _canHook = true;
+            //_audio.Play();
         }
     }
 

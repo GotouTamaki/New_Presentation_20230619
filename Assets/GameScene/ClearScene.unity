@@ -130,6 +130,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2250764604503368394, guid: a94171afaabcbfd4c9097b06882ab904, type: 3}
+      propertyPath: m_Volume
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2250764604503368394, guid: a94171afaabcbfd4c9097b06882ab904, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: bf9f3344934dc6c41948909c7ed955f9, type: 3}
     - target: {fileID: 7202356619970500517, guid: a94171afaabcbfd4c9097b06882ab904, type: 3}
       propertyPath: m_Name
       value: GameManeger

@@ -9,6 +9,7 @@ TagManager:
   - Target
   - Anchor
   - Item
+  - ClearObject
   layers:
   - Default
   - TransparentFX

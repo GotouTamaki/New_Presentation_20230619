@@ -9,17 +9,13 @@ public class SceneTransition : MonoBehaviour
     //[SerializeField] Image[] _images = new Image[2];
     //[SerializeField] Color _selectColor = Color.white;
 
+    AudioSource _audio = default;
 
     // Start is called before the first frame update
     void Start()
     {
         Time.timeScale = 1;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        _audio = GetComponent<AudioSource>();
     }
 
     public void  GameOver(string stage)

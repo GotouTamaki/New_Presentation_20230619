@@ -17,7 +17,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject _target;
     //引っ張られる強さ
     [SerializeField] float _springPower = 1f;
-    
+    [SerializeField] AudioClip _landing = default;
+    [SerializeField] AudioClip _grap = default;
+    [SerializeField] float _grapAudioScale = 1f;
+
     //各種初期化
     Rigidbody2D _rb = default;
     SpriteRenderer _sprite = default;
@@ -35,8 +38,9 @@ public class PlayerController : MonoBehaviour
     Vector2 _diff;
     //ワイヤーアクションの可否
     public bool _CanHook = false;
-    //
+    //今いるステージの情報を記録する
     string _stage = default;
+    AudioSource _audioSource; 
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +50,7 @@ public class PlayerController : MonoBehaviour
         // 初期位置を覚えておく
         _initialPosition = this.transform.position;
         _stage = SceneManager.GetActiveScene().name;
+        _audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -64,12 +69,14 @@ public class PlayerController : MonoBehaviour
             _rb.AddForce(Vector2.up * _jumpPower, ForceMode2D.Impulse);
         }
 
+        if (Input.GetButtonDown("Fire1") && _CanHook)
+        {
+            _audioSource.PlayOneShot(_grap, _grapAudioScale);
+        }
         if (Input.GetButton("Fire1") && _CanHook)
         {
             //Debug.Log("ワイヤーアクション！");
-            _diff = this._target.transform.position - this.transform.position;
-            //ワイヤーアクションの力を加える
-            //m_rb.AddForce(_diff * _springPower, ForceMode2D.Force);            
+            _diff = this._target.transform.position - this.transform.position;     
         }       
         else
         {
@@ -131,6 +138,7 @@ public class PlayerController : MonoBehaviour
             //Debug.Log("接地した");
             _isGrounded = true;
             _jumpcount = 0;
+            _audioSource.PlayOneShot(_landing);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
