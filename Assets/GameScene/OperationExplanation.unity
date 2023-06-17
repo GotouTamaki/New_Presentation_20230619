@@ -288,62 +288,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3269861149616456354, guid: e8479706bcdbecd4896f4eac40dd3ba4, type: 3}
-      propertyPath: m_text
-      value: "A:Left \u3000      \u5DE6\u306B\u79FB\u52D5\nD:Right       \u53F3\u306B\u79FB\u52D5\nspece:Jump 
-        \u30B8\u30E3\u30F3\u30D7 2\u56DE\u307E\u3067\nclick:Grap     \u30B0\u30E9\u30C3\u30D7"
-      objectReference: {fileID: 0}
-    - target: {fileID: 3269861151047883826, guid: e8479706bcdbecd4896f4eac40dd3ba4, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 3269861151047883827, guid: e8479706bcdbecd4896f4eac40dd3ba4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3269861151047883827, guid: e8479706bcdbecd4896f4eac40dd3ba4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 3269861151047883827, guid: e8479706bcdbecd4896f4eac40dd3ba4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 217619407}
     - target: {fileID: 3269861151047883827, guid: e8479706bcdbecd4896f4eac40dd3ba4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 757243737}
-    - target: {fileID: 3269861151047883827, guid: e8479706bcdbecd4896f4eac40dd3ba4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3269861151047883827, guid: e8479706bcdbecd4896f4eac40dd3ba4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: StageSelectScene
       objectReference: {fileID: 0}
-    - target: {fileID: 3269861151047883827, guid: e8479706bcdbecd4896f4eac40dd3ba4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: PlayOneShot
-      objectReference: {fileID: 0}
-    - target: {fileID: 3269861151047883827, guid: e8479706bcdbecd4896f4eac40dd3ba4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: UnityEngine.AudioSource, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 3269861151047883827, guid: e8479706bcdbecd4896f4eac40dd3ba4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 8300000, guid: 05a5376f779578941b42360eb5c5df21, type: 3}
-    - target: {fileID: 3269861151047883827, guid: e8479706bcdbecd4896f4eac40dd3ba4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.AudioClip, UnityEngine
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8479706bcdbecd4896f4eac40dd3ba4, type: 3}
---- !u!82 &757243737 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 2250764604503368394, guid: a94171afaabcbfd4c9097b06882ab904, type: 3}
-  m_PrefabInstance: {fileID: 217619406}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1164540627
 GameObject:
   m_ObjectHideFlags: 0
