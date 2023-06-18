@@ -15,11 +15,8 @@ public class SceneTransition : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1;
-        _se = GetComponent<AudioSource>();
-        
+        _se = GetComponent<AudioSource>();        
     }
-
-
 
     public void  GameOver(string stage)
     {
