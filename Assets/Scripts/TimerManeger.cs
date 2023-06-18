@@ -9,9 +9,9 @@ public class PlayerUIManeger : MonoBehaviour
     [SerializeField]
     Text _timer = default;
 
-    public static float _bestTime = 9999.99f;
+    public static float _bestTime = 9999.99f;   
+    public static float _clearTime = 9999.99f;
     float _time = 0;
-    float _clearTime = 9999.99f;
     public bool _gameClear = false;
 
     // Start is called before the first frame update
