@@ -9,14 +9,17 @@ public class SceneTransition : MonoBehaviour
     //[SerializeField] Image[] _images = new Image[2];
     //[SerializeField] Color _selectColor = Color.white;
 
-    AudioSource _audio = default;
+    AudioSource _se = default;
 
     // Start is called before the first frame update
     void Start()
     {
         Time.timeScale = 1;
-        _audio = GetComponent<AudioSource>();
+        _se = GetComponent<AudioSource>();
+        
     }
+
+
 
     public void  GameOver(string stage)
     {
@@ -52,5 +55,10 @@ public class SceneTransition : MonoBehaviour
     public void Stage_1()
     {
         SceneManager.LoadScene("Stage_1");
+    }
+
+    public void Stage_2()
+    {
+        SceneManager.LoadScene("Stage_2");
     }
 }

@@ -84,10 +84,10 @@ public class PlayerController : MonoBehaviour
         }
 
         // ‰º‚És‚«‚·‚¬‚½‚ç‰ŠúˆÊ’u‚É–ß‚·
-        //if (this.transform.position.y < -10f)
-        //{
-        //    this.transform.position = m_initialPosition;
-        //}
+        if (this.transform.position.y < -10f)
+        {
+            this.transform.position = _initialPosition;
+        }
 
         // İ’è‚É‰‚¶‚Ä¶‰E‚ğ”½“]‚³‚¹‚é
         if (_flipX)

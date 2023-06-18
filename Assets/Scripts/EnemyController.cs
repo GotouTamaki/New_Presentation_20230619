@@ -6,7 +6,7 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField] MoveMode _moveMode;
     [Tooltip("オブジェクトの移動速度")]
-    [SerializeField] float _moveSpeed = 1f;
+    [SerializeField] float _moveSpeed = 5f;
     [Tooltip("ターゲットに到達したと判断する距離（単位:メートル）")]
     [SerializeField] float _stoppingDistance = 0.05f;
     //[SerializeField]
@@ -14,11 +14,11 @@ public class EnemyController : MonoBehaviour
     //[SerializeField]
     //protected float _horiSpeed = 1f;
     [SerializeField]
-    float _originalX = 1f;
+    float _amplitude = 5f;
 
     Vector3 _initialPosition;
     Rigidbody2D _rb = default;
-    float _x = 0;
+    float _wave = 0;
     float _time = 0;
     
 
@@ -59,9 +59,13 @@ public class EnemyController : MonoBehaviour
             {
                 Patrol();
             }
-            else if (_moveMode == MoveMode.SinCurveMove)
+            else if (_moveMode == MoveMode.HoriSinCurveMove)
             {
-                SinCurveMove();
+                HoriSinCurveMove();
+            }
+            else if (_moveMode == MoveMode.VertSinCurveMove)
+            {
+                VertSinCurveMove();
             }
             else if (_moveMode == MoveMode.CatchMove)
             {
@@ -75,7 +79,8 @@ public class EnemyController : MonoBehaviour
         MoveStope,
         MovePoint0,
         Patrol,
-        SinCurveMove,
+        HoriSinCurveMove,
+        VertSinCurveMove,
         CatchMove,
     }
 
@@ -101,11 +106,18 @@ public class EnemyController : MonoBehaviour
 
     }
 
-    void SinCurveMove()
+    void HoriSinCurveMove()
     {
-        _x = Mathf.Sin(_time * _moveSpeed) * _originalX;
+        _wave = Mathf.Sin(_time * _moveSpeed) * _amplitude;
         //Debug.Log(_x);
-        _rb.velocity = new Vector2(_x, _rb.velocity.y);
+        _rb.velocity = new Vector2(_wave, _rb.velocity.y);
+    }
+
+    void VertSinCurveMove()
+    {
+        _wave = Mathf.Sin(_time * _moveSpeed) * _amplitude;
+        //Debug.Log(_x);
+        _rb.velocity = new Vector2(_rb.velocity.x, _wave);
     }
 
     void CatchMove()

@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TimerManeger : MonoBehaviour
+public class PlayerUIManeger : MonoBehaviour
 {
     // 経過時間を表示するオブジェクト
     [SerializeField]
     Text _timer = default;
 
-    float _time = 0;
+    public static float _bestTime = 9999.99f;
+    public static float _clearTime = 9999.99f;
+    static float _time = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -24,5 +26,10 @@ public class TimerManeger : MonoBehaviour
         // TimeText にプレイ時間を表示する
         _time += Time.deltaTime;
         _timer.text = _time.ToString("F2");
+    }
+
+    public static void Result()
+    {
+        _clearTime = _time;
     }
 }
