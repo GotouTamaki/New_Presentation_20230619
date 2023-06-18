@@ -4,14 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class ClearObjectManeger : MonoBehaviour
+public class ClearObjectManager : MonoBehaviour
 {
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            PlayerUIManeger.Result();
+            PlayerUIManager.Result();
             SceneManager.LoadScene("ClearScene");
         }
     }

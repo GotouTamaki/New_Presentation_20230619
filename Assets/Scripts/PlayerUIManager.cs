@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerUIManeger : MonoBehaviour
+public class PlayerUIManager : MonoBehaviour
 {
     // 経過時間を表示するオブジェクト
     [SerializeField]

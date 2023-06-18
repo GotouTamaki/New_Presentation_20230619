@@ -3,20 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BestTimeUIManeger : MonoBehaviour
+public class ClearTimeUIManager : MonoBehaviour
 {
     [SerializeField]
-    Text _BestTime = default;
+    Text _clearTimeUI = default;
 
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        _clearTimeUI.text = PlayerUIManager._clearTime.ToString("F2");
     }
 }

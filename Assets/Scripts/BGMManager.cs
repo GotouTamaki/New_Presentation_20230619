@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class BGMManeger : MonoBehaviour
+public class BGMManager : MonoBehaviour
 {
     [SerializeField]
     AudioClip _BGM_Title;
@@ -14,7 +14,7 @@ public class BGMManeger : MonoBehaviour
 
     private AudioSource source;
     private string beforeScene = "StageSelectScene";
-    static private BGMManeger _instance = null;
+    static private BGMManager _instance = null;
 
         // Start is called before the first frame update
         void Start()

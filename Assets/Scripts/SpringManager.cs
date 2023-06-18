@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpringManeger : MonoBehaviour
+public class SpringManager : MonoBehaviour
 {
     [SerializeField]
     private float _jumpForce = 20.0f;
