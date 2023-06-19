@@ -289,6 +289,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3269861149616456354, guid: e8479706bcdbecd4896f4eac40dd3ba4, type: 3}
+      propertyPath: m_text
+      value: "A:Left \u3000      \u5DE6\u306B\u79FB\u52D5\nD:Right       \u53F3\u306B\u79FB\u52D5\nSpace:Jump  
+        \u30B8\u30E3\u30F3\u30D7  2\u56DE\u307E\u3067\nLeftClick:Grap \u30B0\u30E9\u30C3\u30D7\nEscape:Menu 
+        \u30E1\u30CB\u30E5\u30FC\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 3269861151047883827, guid: e8479706bcdbecd4896f4eac40dd3ba4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
